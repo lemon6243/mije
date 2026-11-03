@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --bg-primary: #0E0E0E;
+    --bg-surface: #161616;
+    --border-color: #2A2A2A;
+    --text-primary: #EDEAE4;
+    --text-secondary: #9A958D;
+    --accent-gold: #C2A878;
+    --error-color: #C46A5E;
+    --muted-color: #6F6A63;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, .font-serif-luxury {
+    font-family: 'Cormorant Garamond', Georgia, 'Noto Sans KR', serif;
+  }
+}
+
+/* Dual-layer Nav Menu Animation */
+.nav-flip-container {
+  display: inline-grid;
+  place-items: center;
+  position: relative;
+}
+
+.nav-flip-en {
+  grid-area: 1 / 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  letter-spacing: 0.12em;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-flip-ko {
+  grid-area: 1 / 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+}
+
+/* Hover & Focus state for mouse/keyboard */
+@media (hover: hover) and (pointer: fine) {
+  .nav-flip-link:hover .nav-flip-en,
+  .nav-flip-link:focus-visible .nav-flip-en {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  .nav-flip-link:hover .nav-flip-ko,
+  .nav-flip-link:focus-visible .nav-flip-ko {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Touch devices: show Korean only */
+@media (hover: none) {
+  .nav-flip-en {
+    display: none !important;
+  }
+  .nav-flip-ko {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* Custom Scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0E0E0E;
+}
+::-webkit-scrollbar-thumb {
+  background: #2A2A2A;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C2A878;
+}
+
+/* Hero Content Entrance 1s Fade */
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-entrance {
+  opacity: 0;
+  animation: heroFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-entrance {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}

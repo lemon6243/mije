@@ -1,0 +1,6 @@
+{
+  "name": "MIJE' - 은공방 & 실버 주얼리",
+  "description": "직접 설계하고 만드는 은 악세사리와 은공방 클래스",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
